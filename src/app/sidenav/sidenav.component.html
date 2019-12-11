@@ -1,0 +1,30 @@
+<mat-toolbar>
+  <button mat-icon-button (click)="menuButtonClicked()">
+    <app-menu-icon></app-menu-icon>
+  </button>
+  <a routerLink="/" class="site-link">
+    <span class="toolbar-title">Hızlı Resim</span>
+    <sup>beta 1</sup>
+  </a>
+</mat-toolbar>
+<mat-nav-list>
+  <a mat-list-item routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{exact: true}" (click)="closeSidenav.emit()">
+    <span>Ana sayfa</span>
+  </a>
+  <a mat-list-item routerLinkActive="active" routerLink="/collections" (click)="closeSidenav.emit()">
+    <span>Fotoğraflar</span>
+  </a>
+</mat-nav-list>
+<mat-divider></mat-divider>
+<mat-nav-list>
+  <a mat-list-item routerLink="/settings" (click)="closeSidenav.emit()">
+    <span>Ayarlar & hesap</span>
+  </a>
+  <a mat-list-item routerLink="/help" (click)="closeSidenav.emit()">
+    <span>Yardım</span>
+  </a>
+  <mat-list-item (click)="closeSidenav.emit(); openFeedbackDialog()">
+    <span>Geri bildirim gönder</span>
+  </mat-list-item>
+</mat-nav-list>
+<div class="copyright-text">© 2019 resim.dev</div>

@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/simple-upload",
+            "outputPath": "dist/simple-upload/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -26,10 +26,21 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
             ],
+            "extractCss": true,
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "bundleName": "light",
+                "inject": false,
+                "input": "src/light.scss"
+              },
+              {
+                "bundleName": "dark",
+                "inject": false,
+                "input": "src/dark.scss"
+              }
             ],
             "scripts": []
           },
@@ -45,6 +56,7 @@
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
+              "commonChunk": false,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -70,7 +82,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "simple-upload:build",
-            "host": "0.0.0.0"
+            "host": "0.0.0.0",
+            "disableHostCheck": true
           },
           "configurations": {
             "production": {
@@ -125,6 +138,48 @@
             "production": {
               "devServerTarget": "simple-upload:serve:production"
             }
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/simple-upload/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "simple-upload:build",
+            "serverTarget": "simple-upload:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "simple-upload:build:production",
+              "serverTarget": "simple-upload:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "simple-upload:build:production",
+            "serverTarget": "simple-upload:server:production",
+            "routes": []
           }
         }
       }

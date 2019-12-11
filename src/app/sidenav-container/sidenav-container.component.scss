@@ -1,0 +1,26 @@
+@media (prefers-color-scheme: light) {
+  ::ng-deep .mat-drawer {
+    background-color: #fff;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  ::ng-deep .mat-drawer {
+    background-color: #353535;
+  }
+}
+
+@media (max-width: 599px) {
+
+  mat-sidenav {
+    width: 320px;
+  }
+}
+
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+  min-height: 100vh;
+}
+
+mat-sidenav {
+  width: 364px;
+}

@@ -1,0 +1,65 @@
+{
+  "hosting": {
+    "headers": [
+      {
+        "source": "**/*.@(js|css)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
+          },
+          {
+            "key": "Content-Encoding",
+            "value": "gzip"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|svg)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=86400"
+          }
+        ]
+      },
+      {
+        "source": "404.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=300"
+          }
+        ]
+      }
+    ],
+    "public": "dist/simple-upload/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
+
+/*    "headers": [
+      {
+        "source": "/",
+        "headers": [{"key": "Link", "value": "<runtime.87ba5ae17dcbdc902c05.js>;rel=preload;as=script,<main.330d3e4e18990ddc2a7d.js>;rel=preload;as=script,<polyfills.d98023a3fc45645c25f8.js>;rel=preload;as=script,<styles.9808820faac76321df7c.css>;rel=preload;as=style,<dark.css>;rel=preload;as=style,<light.css>;rel=preload;as=style"}]
+      }
+    ],*/
