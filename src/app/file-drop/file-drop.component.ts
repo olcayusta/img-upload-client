@@ -2,10 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, OnInit,
 import { UploadService } from '../shared/services/upload.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { catchError } from 'rxjs/operators';
-import { EMPTY } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-file-drop',
@@ -64,8 +61,7 @@ export class FileDropComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private uploadService: UploadService,
-    private snackBar: MatSnackBar
+    private uploadService: UploadService
   ) {
   }
 
@@ -82,10 +78,12 @@ export class FileDropComponent implements OnInit {
   }
 
   uploadToTheServer() {
-    this.uploadService.upload(this.filesToUpload).subscribe(value => {
-      // Reset files
+    // Reset files
+    this.uploadService.upload(this.filesToUpload).subscribe(event => {
       this.filesToUpload = [];
-      this.router.navigate([`/p/${value.postId}`]);
+      if (event.type === HttpEventType.Response) {
+        this.router.navigate([`/p/${event.body.postId}`]);
+      }
     });
   }
 }

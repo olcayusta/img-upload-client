@@ -23,6 +23,34 @@ export class AppComponent implements OnInit {
   spinner = false;
 
   constructor(@Inject(DOCUMENT) private document: Document, private router: Router, @Inject(PLATFORM_ID) private platformId: any) {
+    if (isPlatformBrowser(this.platformId)) {
+      const meta = this.document.createElement('meta');
+      meta.name = 'theme-color';
+
+      const metaThemeColor = this.document.querySelector('meta[name=theme-color]');
+
+
+      const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      if (darkModeMediaQuery.matches) {
+        // metaThemeColor.setAttribute('content', '#272727');
+        meta.content = '#272727';
+      } else {
+        meta.content = '#fff';
+      }
+
+      this.document.head.appendChild(meta);
+
+      darkModeMediaQuery.addListener((e) => {
+        const darkModeOn = e.matches;
+        if (darkModeOn) {
+          metaThemeColor.setAttribute('content', '#272727');
+        } else {
+          metaThemeColor.setAttribute('content', '#fff');
+        }
+      });
+    }
+
+
     router.events.subscribe(event => {
       if (event instanceof ResolveStart) {
         this.spinner = true;
@@ -35,23 +63,5 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    if (isPlatformBrowser(this.platformId)) {
-      const metaThemeColor = this.document.querySelector('meta[name=theme-color]');
-      const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      if (darkModeMediaQuery.matches) {
-        metaThemeColor.setAttribute('content', '#272727');
-      }
-
-      darkModeMediaQuery.addListener((e) => {
-        const darkModeOn = e.matches;
-        if (darkModeOn) {
-          metaThemeColor.setAttribute('content', '#272727');
-        } else {
-          metaThemeColor.setAttribute('content', '#fff');
-        }
-      });
-    }
-
   }
 }

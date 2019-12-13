@@ -18,6 +18,11 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OfflineBannerComponent } from './offline-banner/offline-banner.component';
 import { MenuIconComponent } from './icon/menu-icon/menu-icon.component';
+import { PhotoLibraryIconComponent } from './icon/photo-library-icon/photo-library-icon.component';
+import { HomeIconComponent } from './icon/home-icon/home-icon.component';
+import { HelpIconComponent } from './icon/help-icon/help-icon.component';
+import { SettingsIconComponent } from './icon/settings-icon/settings-icon.component';
+import { FeedbackIconComponent } from './icon/feedback-icon/feedback-icon.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,12 @@ import { MenuIconComponent } from './icon/menu-icon/menu-icon.component';
     SidenavComponent,
     FeedbackDialogComponent,
     OfflineBannerComponent,
-    MenuIconComponent
+    MenuIconComponent,
+    PhotoLibraryIconComponent,
+    HomeIconComponent,
+    HelpIconComponent,
+    SettingsIconComponent,
+    FeedbackIconComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

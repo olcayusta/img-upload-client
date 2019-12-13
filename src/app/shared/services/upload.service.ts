@@ -33,7 +33,11 @@ export class UploadService {
     const headers = new HttpHeaders({
       'ngsw-bypass': 'true'
     });
-    return this.http.post<any>(`${environment.apiUrl}/upload`, formData, {headers, reportProgress: true, observe: 'events'})
+    return this.http.post<any>(`${environment.apiUrl}/upload`, formData, {
+      headers,
+      reportProgress: true,
+      observe: 'events'
+    })
       .pipe(
         catchError(this.handleError.bind(this))
       );

@@ -14,8 +14,7 @@ const routes: Routes = [
       {path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule)},
       {path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)},
       {path: 'library', loadChildren: () => import('./library/library.module').then(m => m.LibraryModule)},
-      {path: 'p/:id', pathMatch: 'full', loadChildren: () => import('./post/post.module').then(m => m.PostModule)},
-      {path: ':id', loadChildren: () => import('./single-image/single-image.module').then(m => m.SingleImageModule)},
+      {path: 'p/:id', pathMatch: 'full', loadChildren: () => import('./post/post.module').then(m => m.PostModule)}
     ]
   },
   {path: ':**', loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)},

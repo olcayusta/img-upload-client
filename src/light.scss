@@ -50,7 +50,7 @@ $background: map_merge($background, (
 
 $theme: map_merge($simple-upload-theme, (background: $background));
 
-@include angular-material-theme($theme);
+// @include angular-material-theme($theme);
 @include mat-button-theme($theme);
 @include mat-toolbar-theme($theme);
 @include mat-list-theme($theme);
@@ -64,6 +64,8 @@ $theme: map_merge($simple-upload-theme, (background: $background));
 @include mat-form-field-theme($theme);
 @include mat-progress-spinner-theme($theme);
 @include mat-progress-bar-theme($theme);
+@include mat-tooltip-theme($theme);
+@include mat-expansion-panel-theme($theme);
 
 /*@include mat-ripple;
 
@@ -94,5 +96,5 @@ $custom-typography: mat-typography-config(
   --card-background: #f5f5f5;
   --medium-emphasis-color: rgba(0, 0, 0, 0.6);
   --button-link-color: #6200EE;
-  --icon-color: rgba(0, 0, 0, .72);
+  --icon-color: rgba(0, 0, 0, .6);
 }
