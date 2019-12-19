@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // apiUrl: '//192.168.1.6:3333',
-  apiUrl: 'http://35.222.109.13:3333',
+  apiUrl: '//192.168.1.6:3333',
+  // apiUrl: '//35.226.9.68:3333',
   appName: 'Hızlı Resim'
 };
 

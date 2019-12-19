@@ -43,6 +43,22 @@ export class UploadService {
       );
   }
 
+  uwsUpload(file: File) {
+    const formData: FormData = new FormData();
+    formData.append(`files[]`, file);
+    const headers = new HttpHeaders({
+      'ngsw-bypass': 'true'
+    });
+    return this.http.post<any>(`http://localhost:3333/upload`, formData, {
+      headers,
+      reportProgress: true,
+      observe: 'events'
+    })
+      .pipe(
+        catchError(this.handleError.bind(this))
+      );
+  }
+
   upload2(file) {
     const formData: FormData = new FormData();
     formData.set('files[]', file);

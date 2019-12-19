@@ -2,6 +2,7 @@ mat-toolbar {
   position: fixed;
   top: 0;
   z-index: 1;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 4px 5px rgba(0, 0, 0, 0.14);
 }
 
 app-menu-icon {
@@ -19,14 +20,10 @@ app-menu-icon {
 sup {
   line-height: 1;
   margin-left: 8px;
-  padding: 2px 4px;
   border-radius: 4px;
-  text-transform: uppercase;
-  font-size: 10px;
-  color: #6200ee;
+  font-size: 12px;
   font-weight: 500;
-  border: 1px solid #6200ee;
-  box-shadow: 2px 2px 0 #6200ee;
+  color: var(--medium-emphasis-color);
 }
 
 .avatar {
@@ -35,4 +32,58 @@ sup {
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.avatar-button {
+  background: none;
+  outline: none;
+  border: none;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  margin-bottom: 24px;
+
+  .img-wrapper {
+    background: #eee;
+    margin-right: 16px;
+  }
+
+  img {
+    display: block;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .primary-text {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .secondary-text {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--medium-emphasis-color);
+  }
+}
+
+::ng-deep .avatar-menu {
+  width: 320px !important;
+}
+
+app-exit-to-app-icon,
+app-settings-icon {
+  display: inline-flex;
 }

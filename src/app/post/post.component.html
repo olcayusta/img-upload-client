@@ -15,7 +15,7 @@
       <div class="media-right-content">
 
         <form autocomplete="off" spellcheck="false">
-          <mat-form-field appearance="standard">
+          <mat-form-field>
             <mat-label>Direk bağlantı</mat-label>
             <input type="url" readonly matInput [value]="file.baseUrl">
             <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala" [cdkCopyToClipboard]="file.baseUrl" (copied)="linkCopied()">
@@ -23,7 +23,7 @@
             </button>
           </mat-form-field>
 
-          <mat-form-field appearance="standard">
+          <mat-form-field>
             <mat-label>HTML</mat-label>
             <input matInput readonly [value]="file.baseUrl | htmlCode">
             <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala" [cdkCopyToClipboard]="file.baseUrl | htmlCode" (copied)="linkCopied()">
@@ -31,7 +31,7 @@
             </button>
           </mat-form-field>
 
-          <mat-form-field appearance="standard">
+          <mat-form-field>
             <mat-label>BBCode</mat-label>
             <input matInput readonly [value]="file.baseUrl | bbCode">
             <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala" [cdkCopyToClipboard]="file.baseUrl | bbCode" (copied)="linkCopied()">
@@ -39,7 +39,7 @@
             </button>
           </mat-form-field>
 
-          <mat-form-field appearance="standard">
+          <mat-form-field>
             <mat-label>Markdown</mat-label>
             <input matInput readonly [value]="file.baseUrl | markdownCode">
             <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala" [cdkCopyToClipboard]="file.baseUrl | markdownCode" (copied)="linkCopied()">

@@ -23,6 +23,9 @@ import { HomeIconComponent } from './icon/home-icon/home-icon.component';
 import { HelpIconComponent } from './icon/help-icon/help-icon.component';
 import { SettingsIconComponent } from './icon/settings-icon/settings-icon.component';
 import { FeedbackIconComponent } from './icon/feedback-icon/feedback-icon.component';
+import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
+import { BrandingWatermarkIconComponent } from './icon/branding-watermark-icon/branding-watermark-icon.component';
+import { ExitToAppIconComponent } from './icon/exit-to-app-icon/exit-to-app-icon.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { FeedbackIconComponent } from './icon/feedback-icon/feedback-icon.compon
     HomeIconComponent,
     HelpIconComponent,
     SettingsIconComponent,
-    FeedbackIconComponent
+    FeedbackIconComponent,
+    SettingsDialogComponent,
+    BrandingWatermarkIconComponent,
+    ExitToAppIconComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

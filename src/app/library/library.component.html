@@ -1,7 +1,17 @@
+<h4>Basic mat-select</h4>
+<mat-form-field appearance="fill">
+  <mat-label>Favorite food</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let food of foods" [value]="food.value">
+      {{food.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
 <div class="grid">
   <div class="grid-item">
     <div class="img-background">
-      <img src="http://192.168.1.6:3333/static/5eHt38IT3UCO.jpg">
+      <img src="https://images.pexels.com/photos/50582/selfie-monkey-self-portrait-macaca-nigra-50582.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
     </div>
     <div class="details">
       <div class="title">5eHt38IT3UCO</div>
@@ -10,7 +20,7 @@
 
   <div class="grid-item">
     <div class="img-background">
-      <img src="http://192.168.1.6:3333/static/c1KLoJKQGWSL.jpg">
+      <img src="https://images.pexels.com/photos/148182/pexels-photo-148182.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
     </div>
     <div class="details">
       <div class="title">5eHt38IT3UCO</div>
@@ -19,7 +29,7 @@
 
   <div class="grid-item">
     <div class="img-background">
-      <img src="http://192.168.1.6:3333/static/hvmCIoVqAL7E.jpg">
+      <img src="https://images.pexels.com/photos/219906/pexels-photo-219906.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
     </div>
     <div class="details">
       <div class="title">5eHt38IT3UCO</div>
@@ -28,7 +38,7 @@
 
   <div class="grid-item">
     <div class="img-background">
-      <img src="http://192.168.1.6:3333/static/TAGupIL9ART7.jpg">
+      <img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
     </div>
     <div class="details">
       <div class="title">5eHt38IT3UCO</div>

@@ -2,6 +2,7 @@ import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { ResolveEnd, ResolveStart, Router } from '@angular/router';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { UpdateService } from './shared/services/update.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,12 @@ import { animate, style, transition, trigger } from '@angular/animations';
 export class AppComponent implements OnInit {
   spinner = false;
 
-  constructor(@Inject(DOCUMENT) private document: Document, private router: Router, @Inject(PLATFORM_ID) private platformId: any) {
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private router: Router,
+    private updateService: UpdateService,
+    @Inject(PLATFORM_ID) private platformId: any
+  ) {
     if (isPlatformBrowser(this.platformId)) {
       const meta = this.document.createElement('meta');
       meta.name = 'theme-color';

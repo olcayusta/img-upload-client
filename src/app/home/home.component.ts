@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   isUploaded = false;
   filesToUpload: Array<File> = [];
 
+  progress;
+
   @HostListener('window:beforeunload', ['$event'])
   doSomething($event) {
     // if (this.isUploading) {
@@ -87,6 +89,7 @@ export class HomeComponent implements OnInit {
     const files = ($event.target as HTMLInputElement).files;
     this.filesToUpload = Array.from(files);
     this.uploadToTheServer();
+
     //  this.snackBar.open(`Can't send photo. Retry in 5 seconds`, 'YİNELE');
   }
 
@@ -97,6 +100,7 @@ export class HomeComponent implements OnInit {
       if (event.type === HttpEventType.UploadProgress) {
         console.log('upload progress');
         const p = Math.round(event.loaded / event.total * 100);
+        this.progress = p;
         console.log(p);
       }
 

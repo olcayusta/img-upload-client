@@ -2,7 +2,7 @@
 
   <ng-container *ngIf="!isUploading && !isUploaded">
     <div class="logo">
-      <img class="logo-img" src="https://assets-ouch.icons8.com/thumb/145/429a6c95-e362-4fb0-b704-ddeeafe8f8a7.png" alt="" draggable="false">
+      <img class="logo-img" src="https://assets-ouch.icons8.com/thumb/757/9e9f3be1-07c6-45f2-94e1-4d539f11851b.png" alt="" draggable="false">
     </div>
 
     <div class="upload-box">
@@ -14,8 +14,11 @@
   </ng-container>
 
   <ng-container *ngIf="isUploading">
-    <div class="spinner">
+    <div class="loading-box">
       <mat-spinner diameter="32" color="primary"></mat-spinner>
+      <div class="progress-text">
+        <span>{{progress}}%</span>
+      </div>
     </div>
   </ng-container>
 

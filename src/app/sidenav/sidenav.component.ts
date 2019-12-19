@@ -4,6 +4,7 @@ import { FeedbackDialogComponent } from '../feedback-dialog/feedback-dialog.comp
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FeedbackService } from '../shared/services/feedback.service';
 import { FormControl } from '@angular/forms';
+import { SettingsDialogComponent } from '../settings-dialog/settings-dialog.component';
 
 @Component({
   selector: 'app-sidenav',
@@ -24,7 +25,6 @@ export class SidenavComponent implements OnInit {
   }
 
   linkClicked() {
-
   }
 
   openFeedbackDialog() {
@@ -40,6 +40,13 @@ export class SidenavComponent implements OnInit {
           this.snackBar.open('Mesaj gonderildi');
         });
       }
+    });
+  }
+
+  openSettingsDialog() {
+    const dialogRef = this.dialog.open(SettingsDialogComponent, {
+      autoFocus: false,
+      minWidth: 768
     });
   }
 }

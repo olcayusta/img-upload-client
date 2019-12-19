@@ -10,7 +10,6 @@ declare const gapi: any;
 export class LoginComponent implements OnInit, AfterViewInit {
 
   constructor() {
-
   }
 
   ngOnInit() {

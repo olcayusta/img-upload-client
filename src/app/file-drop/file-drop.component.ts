@@ -56,7 +56,6 @@ export class FileDropComponent implements OnInit {
     if (e.dataTransfer.items) {
       this.uploadToTheServer();
     }
-
   }
 
   constructor(
@@ -78,8 +77,8 @@ export class FileDropComponent implements OnInit {
   }
 
   uploadToTheServer() {
-    // Reset files
     this.uploadService.upload(this.filesToUpload).subscribe(event => {
+      // Reset files
       this.filesToUpload = [];
       if (event.type === HttpEventType.Response) {
         this.router.navigate([`/p/${event.body.postId}`]);

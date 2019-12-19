@@ -90,3 +90,12 @@ app-link-icon {
   cursor: pointer;
   border-radius: 50%;
 }
+
+mat-form-field {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background: none;
+}

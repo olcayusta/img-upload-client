@@ -10,6 +10,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [],
@@ -24,7 +28,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTooltipModule,
     MatToolbarModule,
     MatRippleModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule {

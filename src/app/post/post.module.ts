@@ -11,6 +11,7 @@ import { HtmlCodePipe } from './pipes/html-code.pipe';
 import { MarkdownCodePipe } from './pipes/markdown-code.pipe';
 import { ImgLazyLoadDirective } from '../shared/directives/img-lazy-load.directive';
 import { MaterialModule } from '../material/material.module';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [PostComponent, LinkIconComponent, BBCodePipe, HtmlCodePipe, MarkdownCodePipe, ImgLazyLoadDirective],
@@ -21,6 +22,9 @@ import { MaterialModule } from '../material/material.module';
     ClipboardModule,
     ReactiveFormsModule,
     FormsModule
+  ],
+  providers: [
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' }}
   ]
 })
 export class PostModule { }
