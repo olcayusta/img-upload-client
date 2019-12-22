@@ -1,18 +1,13 @@
 <form>
-<!--
-  <button mat-raised-button>FACEBOOK İLE GİRİŞ YAP</button>-->
 
-  <div id="my-signin2"></div>
+  <a  mat-raised-button color="primary" id="customBtn">GOOGLE İLE OTURUM AÇ</a>
 
-  <a href="#" onclick="signOut();">Sign out</a>
+  <ng-container *ngIf="user">
+    <h1>{{user.name}}</h1>
 
-  <mat-form-field>
-    <mat-label>E-posta</mat-label>
-    <input matInput>
-  </mat-form-field>
+    <img src="{{user.imageUrl}}" alt="">
+  </ng-container>
 
-  <mat-form-field>
-    <mat-label>Şifre</mat-label>
-    <input matInput>
-  </mat-form-field>
+  <a mat-raised-button (click)="signOut()">Sign out</a>
+
 </form>

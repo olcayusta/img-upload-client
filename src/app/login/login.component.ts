@@ -1,6 +1,12 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
-declare const gapi: any;
+interface User {
+  name: string;
+  email: string;
+  imageUrl: string;
+}
 
 @Component({
   selector: 'app-login',
@@ -8,36 +14,73 @@ declare const gapi: any;
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, AfterViewInit {
+  myAuth2;
+  user: User;
 
-  constructor() {
+  constructor(private http: HttpClient) {
+
   }
 
   ngOnInit() {
+    gapi.load('auth2', () => {
+      const auth2 = gapi.auth2.init({
+        ux_mode: 'popup',
+        client_id: '471440911060-rl9e80le54u8q5jf6ibjlbs6auqlo52o.apps.googleusercontent.com',
+
+      });
+
+      this.myAuth2 = auth2;
+
+      auth2.attachClickHandler(document.getElementById('customBtn'), {},
+        (googleUser) => {
+          console.log('success');
+
+          const name = googleUser.getBasicProfile().getName();
+          const email = googleUser.getBasicProfile().getEmail();
+          const imageUrl = googleUser.getBasicProfile().getImageUrl();
+
+          this.user = {
+            name, email, imageUrl
+          };
+
+          localStorage.setItem('user', JSON.stringify(this.user));
+
+        }, (error) => {
+          alert(JSON.stringify(error, undefined, 2));
+        });
+    });
+  }
+
+  ngAfterViewInit(): void {
+
+
+  }
+
+  attachSignin(element) {
+
+  }
+
+  signOut() {
+    this.myAuth2.signOut();
+  }
+
+  onSuccess(googleUser) {
+    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+  }
+
+  onFailure(error) {
+    console.log(error);
+  }
+
+  renderButton() {
     gapi.signin2.render('my-signin2', {
       scope: 'profile email',
       width: 240,
       height: 50,
       longtitle: true,
-      theme: 'light',
-      onsuccess: param => this.onSignIn(param)
-    });
-  }
-
-  ngAfterViewInit(): void {
-  }
-
-  public onSignIn(googleUser) {
-    const profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  }
-
-  signOut() {
-    const auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(() => {
-      console.log('User signed out.');
+      theme: 'dark',
+      onsuccess: this.onSuccess,
+      onfailure: this.onFailure
     });
   }
 

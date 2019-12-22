@@ -39,6 +39,10 @@ sup {
   font-weight: 500;
 }
 
+::ng-deep .mat-list-base .mat-list-item .mat-list-item-content {
+  padding: 0 24px !important;
+}
+
 .mat-list-item span {
   margin-left: 32px;
   font-weight: 500;
@@ -46,9 +50,6 @@ sup {
   line-height: 24px;
   letter-spacing: .1px;
   color: var(--list-item-color);
-}
-
-.mat-list-item {
 }
 
 .mat-list-item.active {

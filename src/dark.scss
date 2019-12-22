@@ -35,7 +35,7 @@ $mat-deep-purple: (
   )
 );
 
-$simple-upload-primary: mat-palette($mat-analog, 200);
+$simple-upload-primary: mat-palette($mat-deep-purple, 200);
 $simple-upload-accent: mat-palette($mat-deep-purple, A200, A100, A400);
 
 $simple-upload-warn: mat-palette($mat-red);
@@ -73,7 +73,7 @@ $theme: map_merge($simple-upload-theme, (background: $background));
 }
 
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 14px;
 }
 
 ::-webkit-scrollbar-track {
