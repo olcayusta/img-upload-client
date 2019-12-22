@@ -1,29 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+
+export interface User {
+  name: string;
+  email: string;
+  imageUrl: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private isLoggedInSource = new Subject<boolean>();
-  isLoggedIn$ = this.isLoggedInSource.asObservable();
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {
-    const loggedIn = !!localStorage.getItem('user');
-    this.updatetatus(true);
+  constructor() {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
+   /* const loggedIn = !!localStorage.getItem('user');
+    this.updatetatus(loggedIn);*/
   }
 
-  getUser() {
-    return JSON.parse(localStorage.getItem('user'));
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
   }
 
-  updatetatus(status: boolean) {
-    this.isLoggedInSource.next(status);
+  updateUser(user: User) {
+    this.currentUserSubject.next(user);
   }
 
   signOut() {
-    localStorage.clear();
-    this.isLoggedInSource.next(false);
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
   }
 }

@@ -7,10 +7,16 @@
     <!-- <sup>beta 1</sup>-->
   </a>
 
-  <ng-container *ngIf="isLoggedIn$ | async; else notLogged">
-    <button class="avatar-button" [matMenuTriggerFor]="avatarMenu">
+  <ng-container *ngIf="user else notLogged">
+    <button class="avatar-button" #avatarButton="cdkOverlayOrigin" cdkOverlayOrigin (click)="isOpen =! isOpen">
       <img class="avatar" src="{{user.imageUrl}}" alt="">
     </button>
+
+    <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="avatarButton"
+                 [cdkConnectedOverlayScrollStrategy]="scrolBlockStrategy" [cdkConnectedOverlayOpen]="isOpen">
+      <app-avatar-popup [user]="user"></app-avatar-popup>
+    </ng-template>
+
   </ng-container>
   <ng-template #notLogged>
     <a mat-button routerLink="/login">OTURUM AÇ</a>
@@ -18,23 +24,3 @@
 
 </mat-toolbar>
 
-<mat-menu #avatarMenu class="avatar-menu">
-  <div class="menu-header">
-    <div class="img-wrapper">
-      <img
-        src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/03d6825a-57bb-4cc5-8cca-9d09ece3c2a8/da4lkrt-9b262403-2cea-4ca7-91f4-8053be9a8a01.jpg/v1/fit/w_150,h_150,q_70,strp/skylar__by_ririss_da4lkrt-150.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjAwIiwicGF0aCI6IlwvZlwvMDNkNjgyNWEtNTdiYi00Y2M1LThjY2EtOWQwOWVjZTNjMmE4XC9kYTRsa3J0LTliMjYyNDAzLTJjZWEtNGNhNy05MWY0LTgwNTNiZTlhOGEwMS5qcGciLCJ3aWR0aCI6Ijw9NjAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.P1BILRLlWdpSrSGl6uxHfRUtShd86yUw8Ry28878ytA">
-    </div>
-    <div>
-      <div class="primary-text">Olcay Usta</div>
-      <div class="secondary-text">olcayusta@mail.com</div>
-    </div>
-  </div>
-  <button mat-menu-item>
-    <app-settings-icon></app-settings-icon>
-    <span>Hesap</span>
-  </button>
-  <button mat-menu-item (click)="signOut()">
-    <app-exit-to-app-icon></app-exit-to-app-icon>
-    <span>Oturumu kapat</span>
-  </button>
-</mat-menu>

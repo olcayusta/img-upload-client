@@ -47,43 +47,8 @@ sup {
   align-items: center;
 }
 
-.menu-header {
-  display: flex;
-  align-items: center;
-  padding: 8px 16px;
-  margin-bottom: 24px;
 
-  .img-wrapper {
-    background: #eee;
-    margin-right: 16px;
-  }
 
-  img {
-    display: block;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
 
-  .primary-text {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
-  }
 
-  .secondary-text {
-    font-size: 14px;
-    line-height: 20px;
-    color: var(--medium-emphasis-color);
-  }
-}
 
-::ng-deep .avatar-menu {
-  width: 320px !important;
-}
-
-app-exit-to-app-icon,
-app-settings-icon {
-  display: inline-flex;
-}

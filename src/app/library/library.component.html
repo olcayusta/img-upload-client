@@ -1,7 +1,7 @@
 <h4>Basic mat-select</h4>
 <mat-form-field appearance="fill">
   <mat-label>Favorite food</mat-label>
-  <mat-select>
+  <mat-select disableOptionCentering>
     <mat-option *ngFor="let food of foods" [value]="food.value">
       {{food.viewValue}}
     </mat-option>

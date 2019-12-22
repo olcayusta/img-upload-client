@@ -96,6 +96,10 @@ mat-form-field {
   line-height: 20px;
 }
 
+:host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  padding: .75em 0 0 0;
+}
+
 ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
   background: none;
 }

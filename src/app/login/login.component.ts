@@ -1,40 +1,36 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
-
-interface User {
-  name: string;
-  email: string;
-  imageUrl: string;
-}
+import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService, User } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit {
   myAuth2;
   user: User;
 
-  constructor(private http: HttpClient) {
+  isSignedIn;
 
-  }
+  constructor(private authService: AuthService, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     gapi.load('auth2', () => {
       const auth2 = gapi.auth2.init({
         ux_mode: 'popup',
-        client_id: '471440911060-rl9e80le54u8q5jf6ibjlbs6auqlo52o.apps.googleusercontent.com',
-
+        client_id: '471440911060-rl9e80le54u8q5jf6ibjlbs6auqlo52o.apps.googleusercontent.com'
       });
 
       this.myAuth2 = auth2;
 
+      auth2.currentUser.listen(user1 => {
+        this.isSignedIn = user1.isSignedIn();
+        this.snackBar.open(this.isSignedIn);
+      });
+
       auth2.attachClickHandler(document.getElementById('customBtn'), {},
         (googleUser) => {
-          console.log('success');
-
           const name = googleUser.getBasicProfile().getName();
           const email = googleUser.getBasicProfile().getEmail();
           const imageUrl = googleUser.getBasicProfile().getImageUrl();
@@ -43,21 +39,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
             name, email, imageUrl
           };
 
-          localStorage.setItem('user', JSON.stringify(this.user));
-
-        }, (error) => {
-          alert(JSON.stringify(error, undefined, 2));
+          localStorage.setItem('currentUser', JSON.stringify(this.user));
+          this.authService.updateUser(this.user);
+        }, (error: any) => {
+          this.snackBar.open(error.error, 'KAPAT');
         });
     });
-  }
-
-  ngAfterViewInit(): void {
-
-
-  }
-
-  attachSignin(element) {
-
   }
 
   signOut() {

@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { AuthService } from '../shared/services/auth.service';
+import { AuthService, User } from '../shared/services/auth.service';
+import { Observable } from 'rxjs';
+import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-top-bar',
@@ -9,15 +11,17 @@ import { AuthService } from '../shared/services/auth.service';
 export class TopBarComponent implements OnInit {
   @Output() openSidenav = new EventEmitter();
 
-  isLoggedIn$;
+  user: User;
+  isOpen: boolean;
 
-  user: any;
+  scrolBlockStrategy: BlockScrollStrategy;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private overlay: Overlay) {
+    this.scrolBlockStrategy = overlay.scrollStrategies.block();
+  }
 
   ngOnInit() {
-    this.isLoggedIn$ = this.authService.isLoggedIn$;
-    // this.user = this.authService.getUser();
+    this.user = this.authService.currentUserValue;
   }
 
   menuButtonClicked() {

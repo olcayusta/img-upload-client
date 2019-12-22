@@ -26,6 +26,13 @@ import { FeedbackIconComponent } from './icon/feedback-icon/feedback-icon.compon
 import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
 import { BrandingWatermarkIconComponent } from './icon/branding-watermark-icon/branding-watermark-icon.component';
 import { ExitToAppIconComponent } from './icon/exit-to-app-icon/exit-to-app-icon.component';
+import { MAT_MENU_SCROLL_STRATEGY } from '@angular/material/menu';
+import { BlockScrollStrategy, Overlay, OverlayModule } from '@angular/cdk/overlay';
+import { AvatarPopupComponent } from './avatar-popup/avatar-popup.component';
+
+function scrollFactory(overlay: Overlay): () => BlockScrollStrategy {
+  return () => overlay.scrollStrategies.block();
+}
 
 @NgModule({
   declarations: [
@@ -45,7 +52,8 @@ import { ExitToAppIconComponent } from './icon/exit-to-app-icon/exit-to-app-icon
     FeedbackIconComponent,
     SettingsDialogComponent,
     BrandingWatermarkIconComponent,
-    ExitToAppIconComponent
+    ExitToAppIconComponent,
+    AvatarPopupComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -54,10 +62,12 @@ import { ExitToAppIconComponent } from './icon/exit-to-app-icon/exit-to-app-icon
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     HttpClientModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OverlayModule
   ],
   providers: [
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 }}
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 }},
+    {provide: MAT_MENU_SCROLL_STRATEGY, useFactory: scrollFactory, deps: [Overlay]}
   ],
   bootstrap: [AppComponent]
 })
