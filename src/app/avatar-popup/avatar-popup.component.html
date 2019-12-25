@@ -3,14 +3,14 @@
     <div class="img-wrapper">
       <img src="{{user.imageUrl}}"></div>
     <div>
-      <div class="primary-text">Olcay Usta</div>
-      <div class="secondary-text">olcayusta@mail.com</div>
+      <div class="primary-text">{{user.name}}</div>
+      <div class="secondary-text">{{user.email}}</div>
     </div>
   </div>
   <mat-nav-list>
     <a mat-list-item>
       <app-settings-icon></app-settings-icon>
-      <span>Hesap</span>
+      <span>Hesap & ayarlar</span>
     </a>
     <mat-list-item (click)="signOut()">
       <app-exit-to-app-icon></app-exit-to-app-icon>
