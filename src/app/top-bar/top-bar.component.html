@@ -3,21 +3,21 @@
     <app-menu-icon></app-menu-icon>
   </button>
   <a routerLink="/" class="site-link">
-    <span class="toolbar-title">resim.dev</span>
+    <span class="toolbar-title">upload.app</span>
     <!-- <sup>beta 1</sup>-->
   </a>
 
   <ng-container *ngIf="user else notLogged">
-    <button class="avatar-button" #avatarButton="cdkOverlayOrigin" cdkOverlayOrigin (click)="isOpen =! isOpen">
+    <button  class="avatar-button" #avatarButton="cdkOverlayOrigin" cdkOverlayOrigin (click)="isOpen =! isOpen">
       <img class="avatar" src="{{user.imageUrl}}" alt="">
     </button>
 
     <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="avatarButton"
                  [cdkConnectedOverlayScrollStrategy]="scrolBlockStrategy" [cdkConnectedOverlayOpen]="isOpen">
-      <app-avatar-popup [user]="user"></app-avatar-popup>
+      <app-avatar-popup [user]="user" (appOutsideClick)="isOpen = false"></app-avatar-popup>
     </ng-template>
-
   </ng-container>
+
   <ng-template #notLogged>
     <a mat-button routerLink="/login">OTURUM AÇ</a>
   </ng-template>

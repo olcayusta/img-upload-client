@@ -85,6 +85,10 @@ $custom-typography: mat-typography-config(
   @include mat-elevation(4);
 }
 
+.mat-elevation-z10 {
+  @include mat-elevation(10);
+}
+
 *::selection {
   background-color: #6200ea;
   color: #fff;

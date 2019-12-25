@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService, User } from '../shared/services/auth.service';
+
+declare var gapi: any;
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
   myAuth2;
@@ -26,7 +29,6 @@ export class LoginComponent implements OnInit {
 
       auth2.currentUser.listen(user1 => {
         this.isSignedIn = user1.isSignedIn();
-        this.snackBar.open(this.isSignedIn);
       });
 
       auth2.attachClickHandler(document.getElementById('customBtn'), {},
@@ -50,25 +52,4 @@ export class LoginComponent implements OnInit {
   signOut() {
     this.myAuth2.signOut();
   }
-
-  onSuccess(googleUser) {
-    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-  }
-
-  onFailure(error) {
-    console.log(error);
-  }
-
-  renderButton() {
-    gapi.signin2.render('my-signin2', {
-      scope: 'profile email',
-      width: 240,
-      height: 50,
-      longtitle: true,
-      theme: 'dark',
-      onsuccess: this.onSuccess,
-      onfailure: this.onFailure
-    });
-  }
-
 }

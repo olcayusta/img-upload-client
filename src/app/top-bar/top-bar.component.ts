@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService, User } from '../shared/services/auth.service';
-import { Observable } from 'rxjs';
 import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
-  styleUrls: ['./top-bar.component.scss']
+  styleUrls: ['./top-bar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TopBarComponent implements OnInit {
   @Output() openSidenav = new EventEmitter();
@@ -30,5 +30,9 @@ export class TopBarComponent implements OnInit {
 
   signOut() {
     this.authService.signOut();
+  }
+
+  someHandler() {
+    console.log('Outside clicked!');
   }
 }

@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '../material/material.module';
+import { OutsideClickDirective } from './directives/outside-click.directive';
 
 @NgModule({
-  declarations: [],
+  declarations: [OutsideClickDirective],
   imports: [MaterialModule],
   exports: [
-    MaterialModule
+    MaterialModule,
+    OutsideClickDirective
   ]
 })
 export class SharedModule {

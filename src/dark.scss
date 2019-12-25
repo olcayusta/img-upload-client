@@ -66,6 +66,7 @@ $theme: map_merge($simple-upload-theme, (background: $background));
 @include mat-tooltip-theme($theme);
 @include mat-menu-theme($theme);
 @include mat-select-theme($theme);
+@include mat-expansion-panel-theme($theme);
 
 *::selection {
   background-color: #BB86FC;

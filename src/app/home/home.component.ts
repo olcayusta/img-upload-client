@@ -77,9 +77,9 @@ export class HomeComponent implements OnInit {
   async srcToFile(src: string) {
     // var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const response = await fetch(src);
-    const arrayBuffer = response.arrayBuffer();
-    const buffer = await arrayBuffer;
-    return new File([buffer], 'example.jpg', {type: 'image/jpeg'});
+    const blobPart = await response.blob();
+    console.log(blobPart.type);
+    return new File([blobPart], 'file', {type: blobPart.type});
   }
 
   ngOnInit() {
@@ -98,18 +98,10 @@ export class HomeComponent implements OnInit {
     this.uploadService.upload(this.filesToUpload).subscribe(event => {
 
       if (event.type === HttpEventType.UploadProgress) {
-        console.log('upload progress');
-        const p = Math.round(event.loaded / event.total * 100);
-        this.progress = p;
-        console.log(p);
-      }
-
-      if (event.type === HttpEventType.DownloadProgress) {
-        console.log('download progress');
+        this.progress = Math.round(event.loaded / event.total * 100);
       }
 
       if (event.type === HttpEventType.Response) {
-        console.log('donwload completed');
         this.isUploaded = false;
         this.router.navigate([`/p/${event.body.postId}`]);
         this.snackBar.open(event.body.message);

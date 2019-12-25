@@ -24,7 +24,6 @@ import { HelpIconComponent } from './icon/help-icon/help-icon.component';
 import { SettingsIconComponent } from './icon/settings-icon/settings-icon.component';
 import { FeedbackIconComponent } from './icon/feedback-icon/feedback-icon.component';
 import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
-import { BrandingWatermarkIconComponent } from './icon/branding-watermark-icon/branding-watermark-icon.component';
 import { ExitToAppIconComponent } from './icon/exit-to-app-icon/exit-to-app-icon.component';
 import { MAT_MENU_SCROLL_STRATEGY } from '@angular/material/menu';
 import { BlockScrollStrategy, Overlay, OverlayModule } from '@angular/cdk/overlay';
@@ -51,7 +50,6 @@ function scrollFactory(overlay: Overlay): () => BlockScrollStrategy {
     SettingsIconComponent,
     FeedbackIconComponent,
     SettingsDialogComponent,
-    BrandingWatermarkIconComponent,
     ExitToAppIconComponent,
     AvatarPopupComponent
   ],

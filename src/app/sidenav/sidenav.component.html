@@ -3,7 +3,7 @@
     <app-menu-icon></app-menu-icon>
   </button>
   <a routerLink="/" class="site-link">
-    <span class="toolbar-title">resim.dev</span>
+    <span class="toolbar-title">upload.app</span>
   </a>
 </mat-toolbar>
 <mat-nav-list>
@@ -17,19 +17,15 @@
   </a>
 </mat-nav-list>
 <mat-divider></mat-divider>
-<mat-nav-list>
+<!--<mat-nav-list>
   <h3 mat-subheader>HİZMETLER</h3>
-  <a mat-list-item routerLinkActive="active" routerLink="/watermark" (click)="closeSidenav.emit()">
-    <app-branding-watermark-icon></app-branding-watermark-icon>
-    <span>Filigran</span>
-  </a>
 </mat-nav-list>
-<mat-divider></mat-divider>
+<mat-divider></mat-divider>-->
 <mat-nav-list>
-  <mat-list-item (click)="closeSidenav.emit(); openSettingsDialog()">
+  <a mat-list-item routerLink="/settings" (click)="closeSidenav.emit(); openSettingsDialog()">
     <app-settings-icon></app-settings-icon>
     <span>Hesap & ayarlar</span>
-  </mat-list-item>
+  </a>
   <a mat-list-item routerLink="/help" (click)="closeSidenav.emit()">
     <app-help-icon></app-help-icon>
     <span>Yardım</span>

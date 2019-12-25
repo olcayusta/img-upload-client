@@ -22,6 +22,7 @@ import { UpdateService } from './shared/services/update.service';
 })
 export class AppComponent implements OnInit {
   spinner = false;
+  title: 'simple-upload';
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -34,7 +35,6 @@ export class AppComponent implements OnInit {
       meta.name = 'theme-color';
 
       const metaThemeColor = this.document.querySelector('meta[name=theme-color]');
-
 
       const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
       if (darkModeMediaQuery.matches) {
@@ -50,12 +50,13 @@ export class AppComponent implements OnInit {
         const darkModeOn = e.matches;
         if (darkModeOn) {
           metaThemeColor.setAttribute('content', '#272727');
+          meta.content = '#272727';
         } else {
           metaThemeColor.setAttribute('content', '#fff');
+          meta.content = '#fff';
         }
       });
     }
-
 
     router.events.subscribe(event => {
       if (event instanceof ResolveStart) {

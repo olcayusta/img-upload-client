@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { FeedbackDialogComponent } from '../feedback-dialog/feedback-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FeedbackService } from '../shared/services/feedback.service';
-import { FormControl } from '@angular/forms';
 import { SettingsDialogComponent } from '../settings-dialog/settings-dialog.component';
 
 @Component({
@@ -15,16 +14,14 @@ import { SettingsDialogComponent } from '../settings-dialog/settings-dialog.comp
 export class SidenavComponent implements OnInit {
   @Output() closeSidenav = new EventEmitter();
 
-  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private feedbackService: FeedbackService) { }
+  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private feedbackService: FeedbackService) {
+  }
 
   ngOnInit() {
   }
 
   menuButtonClicked() {
     this.closeSidenav.emit(true);
-  }
-
-  linkClicked() {
   }
 
   openFeedbackDialog() {
@@ -34,7 +31,6 @@ export class SidenavComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`); // Pizza!
       if (result) {
         this.feedbackService.sendFeedback(result).subscribe(value => {
           this.snackBar.open('Mesaj gonderildi');
