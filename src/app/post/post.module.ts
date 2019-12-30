@@ -12,9 +12,10 @@ import { MarkdownCodePipe } from './pipes/markdown-code.pipe';
 import { ImgLazyLoadDirective } from '../shared/directives/img-lazy-load.directive';
 import { MaterialModule } from '../material/material.module';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
 
 @NgModule({
-  declarations: [PostComponent, LinkIconComponent, BBCodePipe, HtmlCodePipe, MarkdownCodePipe, ImgLazyLoadDirective],
+  declarations: [PostComponent, LinkIconComponent, BBCodePipe, HtmlCodePipe, MarkdownCodePipe, ImgLazyLoadDirective, SafeUrlPipe],
   imports: [
     CommonModule,
     PostRoutingModule,

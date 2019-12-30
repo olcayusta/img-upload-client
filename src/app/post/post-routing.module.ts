@@ -5,7 +5,8 @@ import { PostComponent } from './post.component';
 import { PostResolverService } from './resolver/post-resolver.service';
 
 const routes: Routes = [
-  {path: '', component: PostComponent, resolve: { post: PostResolverService }}
+  {path: '', component: PostComponent, runGuardsAndResolvers: 'always', resolve: { post: PostResolverService }},
+  // {path: '', component: PostComponent }
 ];
 
 @NgModule({

@@ -1,27 +1,23 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { UploadService } from '../shared/services/upload.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpEventType } from '@angular/common/http';
+import { PostService } from '../shared/services/post.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   isUploading;
-  isUploaded = false;
   filesToUpload: Array<File> = [];
 
   progress;
 
-  @HostListener('window:beforeunload', ['$event'])
-  doSomething($event) {
-    // if (this.isUploading) {
-    //   $event.returnValue = 'Your data will be lost!';
-    // }
-  }
+  subscription: Subscription;
 
   @HostListener('document:paste', ['$event'])
   public async onPaste(ev: ClipboardEvent) {
@@ -37,14 +33,31 @@ export class HomeComponent implements OnInit {
         const xxx = await this.isLinkImageFile(dataText);
         const file = await this.srcToFile(dataText);
         this.filesToUpload = [file];
-        this.uploadToTheServer();
+
+        sessionStorage.setItem('client', Math.floor(Math.random() * 1000).toString());
+
+        this.postService.savePost(sessionStorage.getItem('client')).subscribe(value => {
+
+          // @ts-ignore
+          sessionStorage.setItem('token', value.token);
+
+          this.uploadService.files = this.filesToUpload;
+
+          this.router.navigate([`/p/${value.id}`], {
+            state: {
+              progress: true
+            }
+          });
+        });
+
       } catch (e) {
         this.snackBar.open(e);
       }
     }
   }
 
-  constructor(private uploadService: UploadService, private router: Router, private snackBar: MatSnackBar) {
+  constructor(
+    private postService: PostService, private uploadService: UploadService, private router: Router, private snackBar: MatSnackBar) {
   }
 
   dataTransferItemToFile(items: DataTransferItemList) {
@@ -55,7 +68,23 @@ export class HomeComponent implements OnInit {
       }
     });
     if (this.filesToUpload.length > 0) {
-      this.uploadToTheServer();
+
+      sessionStorage.setItem('client', Math.floor(Math.random() * 1000).toString());
+
+      this.postService.savePost(sessionStorage.getItem('client')).subscribe((value: any) => {
+        console.log(items);
+
+
+        sessionStorage.setItem('token', value.token);
+
+        this.uploadService.files = this.filesToUpload;
+
+        this.router.navigate([`/p/${value.id}`], {
+          state: {
+            progress: true
+          }
+        });
+      });
     }
   }
 
@@ -64,13 +93,8 @@ export class HomeComponent implements OnInit {
       const fakeImage = new Image();
       fakeImage.src = dataText;
 
-      fakeImage.onload = (img) => {
-        resolve(true);
-      };
-
-      fakeImage.onerror = () => {
-        reject(new Error('Maalesef, URL yüklenemedi.'));
-      };
+      fakeImage.onload = (img) => resolve(true);
+      fakeImage.onerror = () => reject(new Error('Maalesef, URL yüklenemedi.'));
     });
   }
 
@@ -86,26 +110,23 @@ export class HomeComponent implements OnInit {
   }
 
   onChange($event: Event) {
-    const files = ($event.target as HTMLInputElement).files;
-    this.filesToUpload = Array.from(files);
-    this.uploadToTheServer();
+    sessionStorage.setItem('client', Math.floor(Math.random() * 1000).toString());
 
-    //  this.snackBar.open(`Can't send photo. Retry in 5 seconds`, 'YİNELE');
+    this.subscription = this.postService.savePost(sessionStorage.getItem('client')).subscribe((value: any) => {
+      sessionStorage.setItem('token', value.token);
+
+      this.uploadService.files = ($event.target as HTMLInputElement).files;
+
+      this.router.navigate([`/p/${value.id}`], {
+        state: {
+          progress: true
+        }
+      });
+    });
   }
 
-  uploadToTheServer() {
-    this.isUploading = true;
-    this.uploadService.upload(this.filesToUpload).subscribe(event => {
+  ngOnDestroy(): void {
 
-      if (event.type === HttpEventType.UploadProgress) {
-        this.progress = Math.round(event.loaded / event.total * 100);
-      }
 
-      if (event.type === HttpEventType.Response) {
-        this.isUploaded = false;
-        this.router.navigate([`/p/${event.body.postId}`]);
-        this.snackBar.open(event.body.message);
-      }
-    });
   }
 }

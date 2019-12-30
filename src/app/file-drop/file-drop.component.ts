@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
 import { UploadService } from '../shared/services/upload.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
-import { HttpEventType } from '@angular/common/http';
+import { Subscription } from 'rxjs';
+import { PostService } from '../shared/services/post.service';
 
 @Component({
   selector: 'app-file-drop',
@@ -21,11 +22,13 @@ import { HttpEventType } from '@angular/common/http';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FileDropComponent implements OnInit {
+export class FileDropComponent implements OnInit, OnDestroy {
   dragEnterCount = 0;
   filesToUpload: Array<File> = [];
 
   @Output() hovered = new EventEmitter();
+
+  subscription: Subscription;
 
   @HostListener('document:dragenter', ['$event'])
   public onDragEnter(e: DragEvent) {
@@ -60,7 +63,8 @@ export class FileDropComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private postService: PostService
   ) {
   }
 
@@ -77,12 +81,21 @@ export class FileDropComponent implements OnInit {
   }
 
   uploadToTheServer() {
-    this.uploadService.upload(this.filesToUpload).subscribe(event => {
+    this.uploadService.files = this.filesToUpload;
+    this.subscription = this.postService.savePost('xd').subscribe((value) => {
+
       // Reset files
       this.filesToUpload = [];
-      if (event.type === HttpEventType.Response) {
-        this.router.navigate([`/p/${event.body.postId}`]);
-      }
+
+      this.router.navigate([`/p/${value.id}`], {
+        state: {
+          progress: true
+        }
+      });
     });
+  }
+
+  ngOnDestroy(): void {
+    console.log(this.subscription);
   }
 }

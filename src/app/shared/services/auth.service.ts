@@ -8,7 +8,6 @@ export interface User {
   imageUrl: string;
 }
 
-
 @Injectable({
   providedIn: 'root'
 })

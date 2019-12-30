@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Library } from '../shared/models/library.model';
 
 export interface Food {
   value: string;
@@ -11,15 +13,18 @@ export interface Food {
   styleUrls: ['./library.component.scss']
 })
 export class LibraryComponent implements OnInit {
+  library: Library;
+
   foods: Food[] = [
     {value: 'steak-0', viewValue: 'Steak'},
     {value: 'pizza-1', viewValue: 'Pizza'},
     {value: 'tacos-2', viewValue: 'Tacos'}
   ];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.library = this.route.snapshot.data.library;
   }
 
 }

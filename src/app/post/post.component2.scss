@@ -1,5 +1,4 @@
 :host {
-  display: block;
   padding-top: 64px;
 }
 
@@ -10,21 +9,21 @@ mat-form-field {
 .media-list {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  grid-gap: 64px 4px;
-  padding: 64px 160px;
+  grid-gap: 64px 24px;
+  padding: 128px 160px;
   max-width: 100rem;
   margin: 0 auto;
 }
 
 .media {
   display: grid;
-  grid-template-columns: 25% 75%;
-  grid-gap: 24px 0;
+  grid-template-columns: auto 1fr;
+  grid-gap: 48px 0;
   background-color: var(--card-background);
 }
 
 .media-left {
-  // min-width: 304px;
+  min-width: 304px;
   overflow: hidden;
 }
 
@@ -39,63 +38,21 @@ mat-form-field {
   padding: 24px 24px;
 }
 
-.img {
-  overflow: hidden;
-}
-
 .img-background {
-   position: relative;
-   background-color: rgba(0, 0, 0, .12);
-  padding-top: 150%;
-  max-width: 364px;
-/*   width: 364px;
-   height: 364px;*/
-
-   img {
-     position: absolute;
-     top: 0;
-     right: 0;
-     bottom: 0;
-     left: 0;
-     display: block;
-     width: 100%;
-     height: 100%;
-     // max-height: 304px;
-     object-fit: cover;
-     opacity: 0;
-     transition: opacity 200ms;
-   }
- }
-
-.img-background2 {
   position: relative;
   background-color: rgba(0, 0, 0, .12);
+  width: 364px;
+  height: 364px;
+}
 
-  img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    // max-height: 304px;
-    object-fit: cover;
-    transition: opacity 200ms;
-    border-radius: 8px;
-  }
-
-  .overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(187, 134, 252, 0.87);
-  }
-
-  mat-progress-bar {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  // max-height: 304px;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 200ms;
 }
 
 @media (max-width: 599px) {
@@ -146,4 +103,3 @@ mat-form-field {
 ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
   background: none;
 }
-

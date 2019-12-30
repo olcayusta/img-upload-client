@@ -94,6 +94,15 @@ $custom-typography: mat-typography-config(
   color: #fff;
 }
 
+$background: map-get($simple-upload-theme, background);
+$background: map_merge($background, (
+  background: #fff,
+  app-bar: #fff
+));
+
+$theme: map_merge($simple-upload-theme, (background: $background));
+@include angular-material-theme($theme);
+
 :root {
   --html-background: #fafafa;
   --html-color: rgba(0, 0, 0, 0.87);

@@ -1,57 +1,129 @@
-<div class="media-list">
+<ng-container *ngIf="images">
+  <div class="media-list">
 
-  <div class="media" *ngFor="let file of post.images">
+    <div class="media" *ngFor="let img of images">
+      <div class="media-left">
+        <a [href]="img.baseUrl" matRipple>
+          <div class="img mat-elevation-z4">
+            <div class="img-background" [style.paddingTop]="(img.height / img.width) * 100 + '%'">
+              <img class="grid-image" [attr.data-lazy]="img.baseUrl" appImgLazyLoad alt="">
+            </div>
+      <!--      <div class="details">
+              <button mat-icon-button>
+                <app-link-icon></app-link-icon>
+              </button>
+            </div>-->
+          </div>
+        </a>
+      </div>
+
+      <div class="media-right">
+        <div class="media-right-content">
+
+          <form autocomplete="off" spellcheck="false">
+            <mat-form-field>
+              <mat-label>Direk bağlantı</mat-label>
+              <input type="url" readonly matInput [value]="img.baseUrl">
+              <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala">
+                <app-link-icon></app-link-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>HTML</mat-label>
+              <input matInput readonly [value]="img.baseUrl | htmlCode">
+              <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala"
+                      [cdkCopyToClipboard]="img.baseUrl | htmlCode">
+                <app-link-icon></app-link-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>BBCode</mat-label>
+              <input matInput readonly [value]="img.baseUrl | bbCode">
+              <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala"
+                      [cdkCopyToClipboard]="img.baseUrl | bbCode">
+                <app-link-icon></app-link-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Markdown</mat-label>
+              <input matInput readonly [value]="img.baseUrl | markdownCode">
+              <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala"
+                      [cdkCopyToClipboard]="img.baseUrl | markdownCode">
+                <app-link-icon></app-link-icon>
+              </button>
+            </mat-form-field>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ng-container>
+
+<!-- Loading Images... -->
+<div class="media-list" *ngIf="files">
+
+  <div class="media" *ngFor="let file of files">
     <div class="media-left">
-      <a [href]="file.baseUrl" matRipple>
+      <a [href]="file.url" matRipple>
         <div class="img">
-          <div class="img-background">
-            <img class="grid-image" [attr.data-lazy]="file.baseUrl" appImgLazyLoad alt="">
+          <div class="img-background2">
+            <img class="grid-image" [src]="file.data | safeUrl"  alt="" (load)="imgLoad($event)">
+            <div class="overlay">
+              <mat-progress-bar value="{{file.progress}}" *ngIf="file.inProgress"></mat-progress-bar>
+            </div>
           </div>
         </div>
       </a>
     </div>
-    <div class="media-right">
-
+   <!-- <div class="media-right">
       <div class="media-right-content">
 
         <form autocomplete="off" spellcheck="false">
           <mat-form-field>
             <mat-label>Direk bağlantı</mat-label>
-            <input type="url" readonly matInput [value]="file.baseUrl">
-            <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala" [cdkCopyToClipboard]="file.baseUrl" (copied)="linkCopied()">
+            <input type="url" readonly matInput [value]="img.baseUrl">
+            <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala">
               <app-link-icon></app-link-icon>
             </button>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>HTML</mat-label>
-            <input matInput readonly [value]="file.baseUrl | htmlCode">
-            <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala" [cdkCopyToClipboard]="file.baseUrl | htmlCode" (copied)="linkCopied()">
+            <input matInput readonly [value]="img.baseUrl | htmlCode">
+            <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala"
+                    [cdkCopyToClipboard]="img.baseUrl | htmlCode">
               <app-link-icon></app-link-icon>
             </button>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>BBCode</mat-label>
-            <input matInput readonly [value]="file.baseUrl | bbCode">
-            <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala" [cdkCopyToClipboard]="file.baseUrl | bbCode" (copied)="linkCopied()">
+            <input matInput readonly [value]="img.baseUrl | bbCode">
+            <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala"
+                    [cdkCopyToClipboard]="img.baseUrl | bbCode">
               <app-link-icon></app-link-icon>
             </button>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Markdown</mat-label>
-            <input matInput readonly [value]="file.baseUrl | markdownCode">
-            <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala" [cdkCopyToClipboard]="file.baseUrl | markdownCode" (copied)="linkCopied()">
+            <input matInput readonly [value]="img.baseUrl | markdownCode">
+            <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala"
+                    [cdkCopyToClipboard]="img.baseUrl | markdownCode">
               <app-link-icon></app-link-icon>
             </button>
           </mat-form-field>
         </form>
 
       </div>
-
-    </div>
+    </div>-->
   </div>
 
 </div>
+
 

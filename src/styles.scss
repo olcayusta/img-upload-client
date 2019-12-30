@@ -22,6 +22,12 @@ body {
   letter-spacing: 1.25px;
 }
 
+.mat-stroked-button {
+  letter-spacing: 1.25px;
+  border-color: #6200ea !important;
+  padding: 0 8px !important;
+}
+
 a, button, img {
   user-drag: none;
   -webkit-user-drag: none;

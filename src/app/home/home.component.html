@@ -1,21 +1,21 @@
 <div class="container">
 
-  <ng-container *ngIf="!isUploading && !isUploaded">
-    <div class="logo">
-      <img class="logo-img" src="https://assets-ouch.icons8.com/thumb/642/c875fb7e-e65b-49bf-b051-93a1a008ab19.png"
-           alt="" draggable="false">
-    </div>
+  <div class="logo">
+    <img class="logo-img" src="https://assets-ouch.icons8.com/thumb/320/b8d88485-1a5c-482d-9e40-f49717a4dc63.png"
+         alt="" draggable="false">
+  </div>
 
-    <div class="upload-box">
-      <div class="primary-text">Basit ve hızlı</div>
-      <div class="secondary-text">Yüklenecek dosyaları herhangi bir yere bırakın veya
-        <button mat-raised-button color="primary" (click)="file.click()">BURAYA TIKLAYARAK</button>
-        seçin
-      </div>
+  <div class="upload-box">
+    <div class="primary-text">Basit ve hızlı</div>
+    <div class="secondary-text">Yüklenecek dosyaları herhangi bir yere bırakın veya
+      <button mat-raised-button color="primary" (click)="file.click()">BURAYA TIKLAYARAK</button>
+      seçin
     </div>
+  </div>
 
-    <input id="file" type="file" accept="image/*" #file multiple (change)="onChange($event)">
-  </ng-container>
+  <input #file id="file" type="file" accept="image/*" formenctype="multipart/form-data" multiple
+         (change)="onChange($event)">
+
 
   <ng-container *ngIf="isUploading">
     <div class="loading-box">

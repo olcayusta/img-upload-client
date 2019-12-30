@@ -1,3 +1,23 @@
 .settings-page {
   padding: 64px 0;
+  margin-top: 24px;
+}
+
+.text-content {
+  text-align: center;
+}
+
+.avatar {
+  display: block;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 48px;
 }

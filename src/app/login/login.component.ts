@@ -44,7 +44,8 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('currentUser', JSON.stringify(this.user));
           this.authService.updateUser(this.user);
         }, (error: any) => {
-          this.snackBar.open(error.error, 'KAPAT');
+          // this.snackBar.open(error.error, 'KAPAT');
+          console.log(error);
         });
     });
   }

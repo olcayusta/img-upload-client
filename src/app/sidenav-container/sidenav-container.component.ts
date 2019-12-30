@@ -4,8 +4,7 @@ import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'app-sidenav-container',
   templateUrl: './sidenav-container.component.html',
-  styleUrls: ['./sidenav-container.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./sidenav-container.component.scss']
 })
 export class SidenavContainerComponent implements OnInit {
 

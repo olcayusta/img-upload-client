@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -9,6 +8,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root'
 })
 export class UploadService {
+  SERVER_URL = 'http://localhost:3333/upload';
+
+  public files: any;
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) {
   }
@@ -27,41 +29,22 @@ export class UploadService {
       'Something bad happened; please try again later.');
   }
 
-  upload(files: Array<File>) {
-    const formData: FormData = new FormData();
-    files.forEach((value: File) => formData.append(`files[]`, value));
-    const headers = new HttpHeaders({
-      'ngsw-bypass': 'true'
-    });
-    return this.http.post<any>(`${environment.apiUrl}/upload`, formData, {
-      headers,
-      reportProgress: true,
-      observe: 'events'
-    })
-      .pipe(
-        catchError(this.handleError.bind(this))
-      );
-  }
+  upload(file) {
+    const formData = new FormData();
+    formData.append('file', file.data);
 
-  uwsUpload(file: File) {
-    const formData: FormData = new FormData();
-    formData.append(`files[]`, file);
-    const headers = new HttpHeaders({
-      'ngsw-bypass': 'true'
+    // FIXME service worker POST problem
+    const headers: HttpHeaders = new HttpHeaders({
+      'ngsw-bypass': 'true',
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`
     });
-    return this.http.post<any>(`http://localhost:3333/upload`, formData, {
-      headers,
-      reportProgress: true,
-      observe: 'events'
-    })
-      .pipe(
-        catchError(this.handleError.bind(this))
-      );
-  }
 
-  upload2(file) {
-    const formData: FormData = new FormData();
-    formData.set('files[]', file);
-    return this.http.post<any>(`${environment.apiUrl}/upload`, formData);
+    return this.http.post<any>(`${this.SERVER_URL}`, formData, {
+      reportProgress: true,
+      observe: 'events',
+      headers
+    }).pipe(
+      catchError(this.handleError.bind(this))
+    );
   }
 }

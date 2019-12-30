@@ -1,0 +1,57 @@
+<div class="media-list">
+
+  <div class="media" *ngFor="let file of post.images">
+    <div class="media-left">
+      <a [href]="file.baseUrl" matRipple>
+        <div class="img">
+          <div class="img-background">
+            <img class="grid-image" [attr.data-lazy]="file.baseUrl" appImgLazyLoad alt="">
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="media-right">
+
+      <div class="media-right-content">
+
+        <form autocomplete="off" spellcheck="false">
+          <mat-form-field>
+            <mat-label>Direk bağlantı</mat-label>
+            <input type="url" readonly matInput [value]="file.baseUrl">
+            <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala" [cdkCopyToClipboard]="file.baseUrl" (copied)="linkCopied()">
+              <app-link-icon></app-link-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>HTML</mat-label>
+            <input matInput readonly [value]="file.baseUrl | htmlCode">
+            <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala" [cdkCopyToClipboard]="file.baseUrl | htmlCode" (copied)="linkCopied()">
+              <app-link-icon></app-link-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>BBCode</mat-label>
+            <input matInput readonly [value]="file.baseUrl | bbCode">
+            <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala" [cdkCopyToClipboard]="file.baseUrl | bbCode" (copied)="linkCopied()">
+              <app-link-icon></app-link-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Markdown</mat-label>
+            <input matInput readonly [value]="file.baseUrl | markdownCode">
+            <button mat-ripple class="ripple-button" matSuffix matTooltip="Kopyala" [cdkCopyToClipboard]="file.baseUrl | markdownCode" (copied)="linkCopied()">
+              <app-link-icon></app-link-icon>
+            </button>
+          </mat-form-field>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
