@@ -1,17 +1,17 @@
 {
-  "name": "simple-upload",
+  "name": "img-upload-client",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev:ssr": "ng run simple-upload:serve-ssr",
-    "serve:ssr": "node dist/simple-upload/server/main.js",
-    "build:ssr": "ng build --prod --experimentalRollupPass && ng run simple-upload:server:production",
-    "prerender": "ng run simple-upload:prerender"
+    "dev:ssr": "ng run img-upload-client:serve-ssr",
+    "serve:ssr": "node dist/img-upload-client/server/main.js",
+    "build:ssr": "ng build --prod --experimentalRollupPass && ng run img-upload-client:server:production",
+    "prerender": "ng run img-upload-client:prerender"
   },
   "private": true,
   "dependencies": {
@@ -29,7 +29,7 @@
     "@angular/service-worker": "^9.0.0-rc.7",
     "@nguniversal/express-engine": "^9.0.0-next.13",
     "express": "^4.17.1",
-    "rxjs": "~6.5.3",
+    "rxjs": "^6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
