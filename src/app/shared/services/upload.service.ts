@@ -40,9 +40,9 @@ export class UploadService {
     });
 
     return this.http.post<any>(`${this.SERVER_URL}`, formData, {
+      headers,
       reportProgress: true,
-      observe: 'events',
-      headers
+      observe: 'events'
     }).pipe(
       catchError(this.handleError.bind(this))
     );

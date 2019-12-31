@@ -13,9 +13,19 @@ import { ImgLazyLoadDirective } from '../shared/directives/img-lazy-load.directi
 import { MaterialModule } from '../material/material.module';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { DeleteIconComponent } from './delete-icon/delete-icon.component';
 
 @NgModule({
-  declarations: [PostComponent, LinkIconComponent, BBCodePipe, HtmlCodePipe, MarkdownCodePipe, ImgLazyLoadDirective, SafeUrlPipe],
+  declarations: [
+    PostComponent,
+    LinkIconComponent,
+    BBCodePipe,
+    HtmlCodePipe,
+    MarkdownCodePipe,
+    ImgLazyLoadDirective,
+    SafeUrlPipe,
+    DeleteIconComponent
+  ],
   imports: [
     CommonModule,
     PostRoutingModule,

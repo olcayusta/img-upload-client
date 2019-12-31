@@ -4,6 +4,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PostService } from '../shared/services/post.service';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-file-drop',
@@ -80,18 +81,30 @@ export class FileDropComponent implements OnInit, OnDestroy {
     });
   }
 
-  uploadToTheServer() {
+  async uploadToTheServer() {
     this.uploadService.files = this.filesToUpload;
-    this.subscription = this.postService.savePost('xd').subscribe((value) => {
+
+    sessionStorage.setItem('client', Math.floor(Math.random() * 1000).toString());
+
+    this.subscription = this.postService.savePost(sessionStorage.getItem('client'))
+      .pipe(
+        catchError((err, caught) => {
+          return err;
+        })
+      )
+      .subscribe(async (value: any) => {
+      sessionStorage.setItem('token', value.token);
 
       // Reset files
       this.filesToUpload = [];
 
-      this.router.navigate([`/p/${value.id}`], {
+      await this.router.navigate([`/p/${value.id}`], {
         state: {
           progress: true
         }
       });
+      this.subscription.unsubscribe();
+
     });
   }
 

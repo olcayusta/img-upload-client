@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class HtmlCodePipe implements PipeTransform {
 
   transform(value: string): string {
-    return `<img src="${value}" alt="">`;
+    return `<img src="${value}">`;
   }
 
 }

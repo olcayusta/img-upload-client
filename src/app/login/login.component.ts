@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
 
       auth2.attachClickHandler(document.getElementById('customBtn'), {},
         (googleUser) => {
+
           const name = googleUser.getBasicProfile().getName();
           const email = googleUser.getBasicProfile().getEmail();
           const imageUrl = googleUser.getBasicProfile().getImageUrl();
@@ -52,5 +53,6 @@ export class LoginComponent implements OnInit {
 
   signOut() {
     this.myAuth2.signOut();
+    this.authService.signOut();
   }
 }

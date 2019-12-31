@@ -42,7 +42,9 @@ export class SidenavComponent implements OnInit {
   openSettingsDialog() {
     const dialogRef = this.dialog.open(SettingsDialogComponent, {
       autoFocus: false,
-      minWidth: 768
+      minWidth: 896,
+      minHeight: 512,
+      panelClass: 'settings-dialog'
     });
   }
 }

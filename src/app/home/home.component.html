@@ -16,7 +16,6 @@
   <input #file id="file" type="file" accept="image/*" formenctype="multipart/form-data" multiple
          (change)="onChange($event)">
 
-
   <ng-container *ngIf="isUploading">
     <div class="loading-box">
       <mat-spinner diameter="32" color="primary"></mat-spinner>

@@ -1,17 +1,25 @@
 <h1 mat-dialog-title>Ayarlar</h1>
 <div mat-dialog-content>
 
-  <mat-nav-list>
-    <mat-list-item>Ana sayfa</mat-list-item>
-    <mat-list-item>Resim optimizasyonu</mat-list-item>
-    <mat-list-item>Gizlilik</mat-list-item>
-  </mat-nav-list>
-
-  <p>WEBP uygulansın mı?</p>
-  <mat-slide-toggle></mat-slide-toggle>
+  <div class="my-dialog-content">
+    <div class="left">
+      <mat-nav-list>
+        <mat-list-item>Kısıtlı Mod</mat-list-item>
+        <mat-list-item>Ses</mat-list-item>
+        <mat-list-item>Gizlilik</mat-list-item>
+        <mat-list-item>Öneriler</mat-list-item>
+        <mat-list-item>Dil ve Konum</mat-list-item>
+        <mat-list-item>Hakkında</mat-list-item>
+      </mat-nav-list>
+    </div>
+    <div class="right">
+      <p>WEBP uygulansın mı?</p>
+      <mat-slide-toggle></mat-slide-toggle>
+    </div>
+  </div>
 </div>
-<div mat-dialog-actions align="end">
+<!--<div mat-dialog-actions align="end">
   <button mat-button>İPTAL</button>
   <button mat-button color="primary">BİTTİ</button>
-</div>
+</div>-->
 

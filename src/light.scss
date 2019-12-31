@@ -42,13 +42,15 @@ $simple-upload-warn: mat-palette($mat-red);
 
 $simple-upload-theme: mat-light-theme($simple-upload-primary, $simple-upload-accent, $simple-upload-warn);
 
+
 $background: map-get($simple-upload-theme, background);
 $background: map_merge($background, (
-  background: #fafafa,
+  background: #fff,
   app-bar: #fff
 ));
 
 $theme: map_merge($simple-upload-theme, (background: $background));
+@include angular-material-theme($theme);
 
 // @include angular-material-theme($theme);
 @include mat-button-theme($theme);
@@ -93,15 +95,6 @@ $custom-typography: mat-typography-config(
   background-color: #6200ea;
   color: #fff;
 }
-
-$background: map-get($simple-upload-theme, background);
-$background: map_merge($background, (
-  background: #fff,
-  app-bar: #fff
-));
-
-$theme: map_merge($simple-upload-theme, (background: $background));
-@include angular-material-theme($theme);
 
 :root {
   --html-background: #fafafa;

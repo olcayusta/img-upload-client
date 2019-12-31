@@ -54,7 +54,7 @@ function scrollFactory(overlay: Overlay): () => BlockScrollStrategy {
     AvatarPopupComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({appId: 'serverApp'}),
     AppRoutingModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
@@ -64,7 +64,7 @@ function scrollFactory(overlay: Overlay): () => BlockScrollStrategy {
     OverlayModule
   ],
   providers: [
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 }},
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 3000}},
     {provide: MAT_MENU_SCROLL_STRATEGY, useFactory: scrollFactory, deps: [Overlay]}
   ],
   bootstrap: [AppComponent]

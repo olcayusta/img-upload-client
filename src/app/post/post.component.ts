@@ -1,18 +1,11 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  ViewChild
-} from '@angular/core';
-import { Post } from '../shared/models/post.model';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
 import { UploadService } from '../shared/services/upload.service';
 import { HttpEventType } from '@angular/common/http';
 import { Image } from '../shared/models/image.model';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-post',
@@ -68,7 +61,13 @@ export class PostComponent implements OnInit {
 
   uploadFile(file) {
     file.inProgress = true;
-    this.uploadService.upload(file).subscribe(e => {
+    this.uploadService.upload(file)
+      .pipe(
+        catchError((err, caught) => {
+          return err;
+        })
+      )
+      .subscribe(e => {
       if (e.type === HttpEventType.UploadProgress) {
         file.progress = Math.round((e.loaded * 100) / e.total);
       }
@@ -81,7 +80,6 @@ export class PostComponent implements OnInit {
   }
 
   private uploadFiles() {
-    // this.fileUpload.nativeElement.value = '';
     this.files.forEach(file => {
       this.uploadFile(file);
     });
