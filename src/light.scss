@@ -104,8 +104,15 @@ $custom-typography: mat-typography-config(
   --list-active-color: #6200ee;
   --list-item-color: rgba(0, 0, 0, 0.6);
   --card-background: #f5f5f5;
+
+  // Primary Color 200
+  --primary-color: #6200ee;
   --medium-emphasis-color: rgba(0, 0, 0, 0.6);
   --button-link-color: #6200EE;
   --icon-color: rgba(0, 0, 0, .6);
   --list-icon-color: rgba(0, 0, 0, 0.6);
+}
+
+::ng-deep mat-toolbar {
+  background-color: #fff !important;
 }

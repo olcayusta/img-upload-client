@@ -28,19 +28,29 @@
 }
 
 .primary-text {
-  font-family: Roboto Mono, monospace;
   font-size: 48px;
-  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
   line-height: 72px;
   max-width: 768px;
-  letter-spacing: -0.4px;
 }
 
 .secondary-text {
-  font-family: Roboto Mono, monospace;
   font-size: 14px;
   line-height: 24px;
   margin-top: 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+
+  span {
+    color: var(--medium-emphasis-color);
+  }
+
+  button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: lowercase;
+  }
 }
 
 #file {

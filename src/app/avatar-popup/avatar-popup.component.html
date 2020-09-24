@@ -1,10 +1,10 @@
 <div class="avatar-popup mat-elevation-z10">
   <div class="menu-header">
     <div class="img-wrapper">
-      <img src="{{user.imageUrl}}"></div>
+      <img src="{{user?.imageUrl ? user.imageUrl : 'https://i.pinimg.com/236x/fa/9c/10/fa9c10cd010a67aac9299b3c81e51be3.jpg'}}"></div>
     <div>
-      <div class="primary-text">{{user.name}}</div>
-      <div class="secondary-text">{{user.email}}</div>
+      <div class="primary-text">{{user?.name ? user.name : 'Olcay Usta'}}</div>
+      <div class="secondary-text">{{user?.email ? user.email : 'olcay@gmail.com'}}</div>
     </div>
   </div>
   <mat-nav-list>

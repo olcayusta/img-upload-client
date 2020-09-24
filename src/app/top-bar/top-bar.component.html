@@ -9,7 +9,8 @@
 
   <ng-container *ngIf="user else notLogged">
     <button aria-label="Menüyü aç" class="avatar-button" #avatarButton="cdkOverlayOrigin" cdkOverlayOrigin (click)="isOpen =! isOpen">
-      <img class="avatar" src="{{user.imageUrl}}" alt="">
+     <!-- <img class="avatar" src="{{user?.imageUrl}}" alt="">-->
+      <img class="avatar" src="https://i.pinimg.com/236x/fa/9c/10/fa9c10cd010a67aac9299b3c81e51be3.jpg" alt="">
     </button>
 
     <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="avatarButton"

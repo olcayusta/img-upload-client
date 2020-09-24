@@ -8,7 +8,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root'
 })
 export class UploadService {
-  SERVER_URL = 'http://localhost:3333/upload';
+  // SERVER_URL = 'http://localhost:3333/upload';
+  SERVER_URL = 'http://localhost:3333/images';
 
   public files: any;
 

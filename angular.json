@@ -181,6 +181,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "img-upload-client"
+    }
+  },
+  "defaultProject": "img-upload-client",
+  "cli": {
+    "analytics": "e60142de-4368-4ee4-93f7-394833fb7951"
+  }
 }

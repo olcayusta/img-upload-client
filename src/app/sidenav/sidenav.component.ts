@@ -14,7 +14,11 @@ import { SettingsDialogComponent } from '../settings-dialog/settings-dialog.comp
 export class SidenavComponent implements OnInit {
   @Output() closeSidenav = new EventEmitter();
 
-  constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private feedbackService: FeedbackService) {
+  constructor(
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private feedbackService: FeedbackService
+  ) {
   }
 
   ngOnInit() {

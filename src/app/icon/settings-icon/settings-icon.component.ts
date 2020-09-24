@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-settings-icon',
   templateUrl: 'settings-24px.svg',
-  styleUrls: ['./settings-icon.component.scss']
+  styles: [`:host {
+    display: inline-flex
+  }`],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SettingsIconComponent implements OnInit {
+export class SettingsIconComponent {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
   }
 
 }

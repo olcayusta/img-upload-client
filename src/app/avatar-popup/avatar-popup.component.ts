@@ -16,6 +16,5 @@ export class AvatarPopupComponent implements OnInit {
   }
 
   signOut() {
-
   }
 }
