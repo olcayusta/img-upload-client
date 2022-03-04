@@ -28,7 +28,7 @@
               "src/assets",
               "src/manifest.webmanifest"
             ],
-            "extractCss": true,
+
             "styles": [
               "src/styles.scss",
               {
